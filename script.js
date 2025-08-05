@@ -1,4 +1,4 @@
-// Enhanced Navigation and Page Transitions
+// Enhanced Navigation and Page Transitions - MOBILE HAMBURGER FIXED
 document.addEventListener('DOMContentLoaded', function() {
     // Page loading animation
     const pageLoader = document.createElement('div');
@@ -18,73 +18,199 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add page transition class to main content
     const mainContent = document.querySelector('body');
-    mainContent.classList.add('page-transition');
-    
-    setTimeout(() => {
-        mainContent.classList.add('loaded');
-    }, 100);
+    if (mainContent) {
+        mainContent.classList.add('page-transition');
+        
+        setTimeout(() => {
+            mainContent.classList.add('loaded');
+        }, 100);
+    }
 
-    // Enhanced Mobile menu toggle
+    // COMPLETELY REWRITTEN Mobile menu toggle - FIXED FOR MOBILE
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const body = document.body;
+    
+    // State tracking
+    let isMenuOpen = false;
+    let isToggling = false;
 
     // Create mobile menu overlay
     const mobileOverlay = document.createElement('div');
     mobileOverlay.className = 'mobile-menu-overlay';
+    mobileOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    `;
     document.body.appendChild(mobileOverlay);
 
     function openMobileMenu() {
-        hamburger.classList.add('active');
-        navMenu.classList.add('active');
-        mobileOverlay.classList.add('active');
+        if (isToggling) return;
+        isToggling = true;
+        
+        console.log('Opening mobile menu');
+        isMenuOpen = true;
+        
+        if (hamburger) hamburger.classList.add('active');
+        if (navMenu) navMenu.classList.add('active');
+        mobileOverlay.style.opacity = '1';
+        mobileOverlay.style.visibility = 'visible';
         body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            isToggling = false;
+        }, 100);
     }
 
     function closeMobileMenu() {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        mobileOverlay.classList.remove('active');
+        if (isToggling) return;
+        isToggling = true;
+        
+        console.log('Closing mobile menu');
+        isMenuOpen = false;
+        
+        if (hamburger) hamburger.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        mobileOverlay.style.opacity = '0';
+        mobileOverlay.style.visibility = 'hidden';
         body.style.overflow = '';
+        
+        setTimeout(() => {
+            isToggling = false;
+        }, 100);
     }
 
-    hamburger.addEventListener('click', function(e) {
+    // Hamburger click handler with debouncing
+    if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            
+            console.log('Hamburger clicked, current state:', isMenuOpen);
+            
+            if (isToggling) {
+                console.log('Still toggling, ignoring click');
+                return;
+            }
+            
+            if (isMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        // Prevent any other events on hamburger
+        hamburger.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        });
+        
+        hamburger.addEventListener('touchend', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Close menu when clicking overlay
+    mobileOverlay.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
-        if (navMenu.classList.contains('active')) {
+        console.log('Overlay clicked');
+        if (isMenuOpen) {
             closeMobileMenu();
-        } else {
-            openMobileMenu();
         }
     });
 
-    // Close menu when clicking overlay
-    mobileOverlay.addEventListener('click', closeMobileMenu);
+    // Prevent clicks inside navMenu from closing the menu
+    if (navMenu) {
+        navMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('Nav menu clicked, preventing close');
+        });
+        
+        navMenu.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        });
+    }
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Add smooth transition before navigation
-            e.preventDefault();
+    // Handle nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
             const targetPage = link.getAttribute('href');
+            console.log('Nav link clicked:', targetPage);
             
-            // Add exit animation
-            mainContent.classList.remove('loaded');
-            
-            setTimeout(() => {
+            // Always close menu when link is clicked
+            if (isMenuOpen) {
                 closeMobileMenu();
-                window.location.href = targetPage;
-            }, 300);
+            }
+            
+            // Handle different link types
+            if (targetPage && targetPage.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(targetPage);
+                if (target) {
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            } else if (targetPage && !targetPage.startsWith('javascript:')) {
+                // For regular page navigation
+                if (mainContent) {
+                    mainContent.classList.remove('loaded');
+                }
+                // Let the browser handle the navigation
+            }
         });
     });
 
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            console.log('Escape pressed, closing menu');
             closeMobileMenu();
         }
     });
 
-    // Smooth scrolling for anchor links (if any)
+    // MODIFIED: More specific document click handler
+    document.addEventListener('click', function(e) {
+        // Only handle if menu is open
+        if (!isMenuOpen || isToggling) return;
+        
+        // Don't close if clicking on hamburger, nav menu, or their children
+        if (hamburger && hamburger.contains(e.target)) return;
+        if (navMenu && navMenu.contains(e.target)) return;
+        if (mobileOverlay.contains(e.target)) return;
+        
+        console.log('Document clicked outside menu, closing');
+        closeMobileMenu();
+    }, true); // Use capture phase
+
+    // Additional touch event handling for mobile
+    document.addEventListener('touchstart', function(e) {
+        if (!isMenuOpen || isToggling) return;
+        
+        // Don't close if touching hamburger, nav menu, or overlay
+        if (hamburger && hamburger.contains(e.target)) return;
+        if (navMenu && navMenu.contains(e.target)) return;
+        if (mobileOverlay.contains(e.target)) return;
+        
+        console.log('Touch outside menu, closing');
+        closeMobileMenu();
+    }, { passive: true });
+
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -102,23 +228,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastScrollTop = 0;
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 50) {
-            navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
+        if (navbar) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
 
-        // Hide/show navbar on scroll (optional)
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
+            // Hide/show navbar on scroll (optional)
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
         }
-        lastScrollTop = scrollTop;
     });
 
     // Enhanced Portfolio filtering with smooth animations
@@ -142,8 +270,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         item.style.transform = 'scale(1) translateY(0)';
                     }, index * 100);
                 } else {
-                    const categories = item.getAttribute('data-category').split(' ');
-                    if (categories.includes(filter)) {
+                    const categories = item.getAttribute('data-category');
+                    if (categories && categories.split(' ').includes(filter)) {
                         item.style.display = 'block';
                         setTimeout(() => {
                             item.style.opacity = '1';
@@ -167,23 +295,25 @@ document.addEventListener('DOMContentLoaded', function() {
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         
-        question.addEventListener('click', function() {
-            const isActive = item.classList.contains('active');
-            
-            // Close all FAQ items with smooth animation
-            faqItems.forEach(faqItem => {
-                if (faqItem !== item) {
-                    faqItem.classList.remove('active');
+        if (question) {
+            question.addEventListener('click', function() {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items with smooth animation
+                faqItems.forEach(faqItem => {
+                    if (faqItem !== item) {
+                        faqItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
                 }
             });
-            
-            // Toggle clicked item
-            if (!isActive) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
-        });
+        }
     });
 
     // Enhanced form handling with better UX
@@ -194,38 +324,40 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Basic validation
-            if (!data.firstName || !data.lastName || !data.email || !data.service || !data.message) {
-                showNotification('Please fill in all required fields.', 'error');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                return;
+            if (submitBtn) {
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Basic validation
+                if (!data.firstName || !data.lastName || !data.email || !data.service || !data.message) {
+                    showNotification('Please fill in all required fields.', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    showNotification('Please enter a valid email address.', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    return;
+                }
+                
+                // Simulate form submission with delay
+                setTimeout(() => {
+                    showNotification('Thank you! Your message has been sent. We\'ll get back to you soon.', 'success');
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
             }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-            
-            // Simulate form submission with delay
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent. We\'ll get back to you soon.', 'success');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
         });
     }
 
@@ -235,8 +367,12 @@ document.addEventListener('DOMContentLoaded', function() {
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = this.querySelector('input[type="email"]').value;
+            const emailInput = this.querySelector('input[type="email"]');
             const submitBtn = this.querySelector('button[type="submit"]');
+            
+            if (!emailInput || !submitBtn) return;
+            
+            const email = emailInput.value;
             const originalText = submitBtn.textContent;
             
             if (!email) {
@@ -311,7 +447,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 current = target;
                 clearInterval(timer);
             }
-            element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+            const suffix = element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '';
+            element.textContent = Math.floor(current) + suffix;
         }, 20);
     };
 
@@ -320,7 +457,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const number = entry.target.textContent;
                 const target = parseInt(number.replace(/[^\d]/g, ''));
-                animateCounter(entry.target, target);
+                if (!isNaN(target)) {
+                    animateCounter(entry.target, target);
+                }
                 statsObserver.unobserve(entry.target);
             }
         });
@@ -407,23 +546,45 @@ function showNotification(message, type = 'info') {
         border: 1px solid rgba(255,255,255,0.1);
     `;
 
-    notification.querySelector('.notification-content').style.cssText = `
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-    `;
+    const notificationContent = notification.querySelector('.notification-content');
+    if (notificationContent) {
+        notificationContent.style.cssText = `
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        `;
+    }
 
-    notification.querySelector('.notification-close').style.cssText = `
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
-        transition: transform 0.2s ease;
-    `;
+    const closeBtn = notification.querySelector('.notification-close');
+    if (closeBtn) {
+        closeBtn.style.cssText = `
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        `;
+
+        // Enhanced close button functionality
+        closeBtn.addEventListener('click', () => {
+            notification.style.transform = 'translateX(100%) scale(0.8)';
+            setTimeout(() => {
+                notification.remove();
+            }, 400);
+        });
+
+        closeBtn.addEventListener('mouseenter', () => {
+            closeBtn.style.transform = 'scale(1.2)';
+        });
+
+        closeBtn.addEventListener('mouseleave', () => {
+            closeBtn.style.transform = 'scale(1)';
+        });
+    }
 
     // Add to page
     document.body.appendChild(notification);
@@ -432,23 +593,6 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.style.transform = 'translateX(0) scale(1)';
     }, 10);
-
-    // Enhanced close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%) scale(0.8)';
-        setTimeout(() => {
-            notification.remove();
-        }, 400);
-    });
-
-    closeBtn.addEventListener('mouseenter', () => {
-        closeBtn.style.transform = 'scale(1.2)';
-    });
-
-    closeBtn.addEventListener('mouseleave', () => {
-        closeBtn.style.transform = 'scale(1)';
-    });
 
     // Auto remove after 5 seconds
     setTimeout(() => {
@@ -570,8 +714,10 @@ function initTooltips() {
                 this.tooltip.style.opacity = '0';
                 this.tooltip.style.transform = 'translateY(10px)';
                 setTimeout(() => {
-                    this.tooltip.remove();
-                    this.tooltip = null;
+                    if (this.tooltip) {
+                        this.tooltip.remove();
+                        this.tooltip = null;
+                    }
                 }, 300);
             }
         });
@@ -579,4 +725,4 @@ function initTooltips() {
 }
 
 // Initialize tooltips when DOM is loaded
-document.addEventListener('DOMContentLoaded', initTooltips); 
+document.addEventListener('DOMContentLoaded', initTooltips);
