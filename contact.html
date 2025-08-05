@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GSM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img  class="nav-logo img" src="your-logo.png"/>
+                <h2>GSM</h2>
+                <span>Growth Story Media</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="upcoming-works.html" class="nav-link">Upcoming Works</a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Get in <span class="gold-text">Touch</span></h1>
+            <p class="page-subtitle">Ready to start your growth story? Let's connect and create something amazing together.</p>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>+91 76049 17390</p>
+                    <!-- <p>+1 (555) 987-6543</p> -->
+                    <span class="availability">Mon-Sat: 9AM-6PM</span>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>hai@growthstorymedia.com</p>
+                    <!-- <p>projects@growthstorymedia.com</p> -->
+                    <span class="availability">Response within 2 hours</span>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>Kodeeswaran Nagar</p>
+                    <p>Tirunelveli</p>
+                    <!-- <p>City, State 12345</p> -->
+                    <!-- <span class="availability">By appointment only</span> -->
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Business Hours</h3>
+                    <p>Monday - Saturday: 9AM - 6PM</p>
+                    <!-- <p>Saturday: 10AM - 4PM</p> -->
+                    <p>Sunday: Closed</p>
+                    <span class="availability">Emergency support available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <!-- <div class="form-content">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible. We're excited to hear about your project!</p>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="content-writing">Content Writing</option>
+                                <option value="editing">Editing & Proofreading</option>
+                                <option value="event-organizing">Event Organizing</option>
+                                <option value="influencer-promotion">Influencer Promotion</option>
+                                <option value="ad-script-writing">Ad Script Writing</option>
+                                <option value="multiple-services">Multiple Services</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="under-5k">Under $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="over-50k">Over $50,000</option>
+                                <option value="discuss">Let's discuss</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline</option>
+                                <option value="asap">ASAP</option>
+                                <option value="1-2-weeks">1-2 weeks</option>
+                                <option value="1-month">1 month</option>
+                                <option value="2-3-months">2-3 months</option>
+                                <option value="3-plus-months">3+ months</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell us about your project, goals, and any specific requirements..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="newsletter" id="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to our newsletter for updates and insights
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large" onclick="alert">Send Message</button>
+                    </form>
+                </div> -->
+                
+                <div class="form-sidebar">
+                    <div class="sidebar-content">
+                        <h3>Why Choose GSM?</h3>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check"></i> Proven track record of success</li>
+                            <li><i class="fas fa-check"></i> Experienced creative team</li>
+                            <li><i class="fas fa-check"></i> Personalized approach</li>
+                            <li><i class="fas fa-check"></i> Transparent communication</li>
+                            <li><i class="fas fa-check"></i> Measurable results</li>
+                        </ul>
+                        
+                        <div class="quick-contact">
+                            <h4>Need immediate assistance?</h4>
+                            <p>Call us directly at <strong>+91 76049 17390</strong></p>
+                            <a href="tel:+91760417390" class="btn btn-secondary">Call Now</a>
+                            <p>
+
+                            </p>
+                            <p>Mail us directly at <strong>hai@growthstorymedia.com</strong></p>
+                            <a href="mailto:hai@growthstorymedia.com" class="btn btn-secondary">Mail Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <!-- <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your typical project timeline?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project timelines vary depending on scope and complexity. Small content projects typically take 1-2 weeks, while comprehensive campaigns can take 1-3 months. We'll provide a detailed timeline during our initial consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you work with international clients?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we work with clients worldwide! We have experience in creating content and campaigns for international markets and can adapt our strategies to different cultural contexts.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What industries do you specialize in?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We have experience across various industries including technology, healthcare, fashion, food & beverage, education, and more. Our diverse portfolio demonstrates our ability to adapt to different sectors.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do you measure project success?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We establish clear KPIs at the beginning of each project, including engagement rates, conversion metrics, brand awareness, and ROI. We provide regular reports and analytics to track progress and success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Map Section -->
+    <!-- <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Find Us</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map"></i>
+                    <p>Interactive Map Coming Soon</p>
+                    <p>123 Creative Street, Innovation District, City, State 12345</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GSM</h3>
+                    <p>Growth Story Media</p>
+                    <p>Crafting compelling narratives that drive growth and engagement.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li>Content Writing</li>
+                        <li>Editing</li>
+                        <li>Event Organizing</li>
+                        <li>Influencer Promotion</li>
+                        <li>Ad Script Writing</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Growth Story Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

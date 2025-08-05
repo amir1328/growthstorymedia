@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - GSM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img  class="nav-logo img" src="your-logo.png"/>
+                <h2>GSM</h2>
+                <span>Growth Story Media</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="upcoming-works.html" class="nav-link">Upcoming Works</a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Our <span class="gold-text">Portfolio</span></h1>
+            <p class="page-subtitle">Showcasing our best work and successful client collaborations</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter -->
+    <!-- <section class="portfolio-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="content">Content Writing</button>
+                <button class="filter-btn" data-filter="video">Video Production</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="influencer">Influencer</button>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-grid">
+        <div class="container">
+            <div class="portfolio-items">
+                <div class="portfolio-item" data-category="content video">
+                    <div class="portfolio-image">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>TechStart Brand Campaign</h3>
+                                <p>Complete content strategy and video production</p>
+                                <a href="https://drive.google.com/file/d/1Ojo76TzcAwOrti1XVvVvChja49YiSZ1Z/view?usp=drivesdk" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>TechStart Brand Campaign</h3>
+                        <p>Content Writing • Video Production</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="events">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Innovating the Industry</h3>
+                                <p>Planning and execution</p>
+                                <a href="https://drive.google.com/file/d/1OmPTkLOCK3KIjyp68xJ57G_-KCG04lcx/view?usp=drivesdk" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Innovating the Industr</h3>
+                        <p>Planning and execution</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="influencer">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Fashion Forward Campaign</h3>
+                                <p>Influencer collaboration and promotion</p>
+                                <a href="https://drive.google.com/file/d/1Oo9pcFSr-Z2C6t0ALLabbL76ZyWTrsw8/view?usp=drivesdk" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Fashion Forward Campaign</h3>
+                        <p>Influencer Promotion</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="content">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Leading in front</h3>
+                                <p>Content writing </p>
+                                <a href="https://drive.google.com/file/d/1Orm_j6uLAFHnxpPLzxA2MWftQyVaqpWC/view?usp=drivesdk" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Leading in front</h3>
+                        <p>Content Writing</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="video">
+                    <div class="portfolio-image">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Getting Innovation everyday</h3>
+                                <p>Ad script writing and video production</p>
+                                <a href="https://drive.google.com/file/d/1OqrAm156hWHleyEZUwEi_79zE88OhMKF/view?usp=drivesdk" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Getting Innovation everyday</h3>
+                        <p>Ad Script Writing • Video Production</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="events influencer">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Writing can Change anything</h3>
+                                <p>Getting insights each day</p>
+                                <a href="https://drive.google.com/file/d/1P3KSa_fToxcOuXx-KNT31ptBj9_nR9e0/view?usp=drivesdk" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Writing can Change anything</h3>
+                        <p>Getting insights each day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="video-gallery">
+        <div class="container">
+            <h2 class="section-title">Video Showcase</h2>
+            <div class="video-grid">
+                <!-- <div class="video-item">
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3>TechStart Brand Story</h3>
+                            <p>Complete brand narrative and product showcase</p>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="video-item">
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3>Restaurant Chain Commercial</h3>
+                            <p>Compelling TV advertisement with strong call-to-action</p>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="video-item">
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                           <a href="https://drive.google.com/file/d/1OvXbc4Cii5NSqJG3YhTkngZW4j-vH0Qo/view?usp=drivesdk"> <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="video-info">
+                            <h3>Event Highlights Reel</h3>
+                            <p>OnBoarding Vignesh Shivan </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Collaborations -->
+    <!-- <section class="client-collaborations">
+        <div class="container">
+            <h2 class="section-title">Client Collaborations</h2>
+            <div class="clients-grid">
+                <div class="client-card">
+                    <div class="client-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>TechStart</h3>
+                    <p>Technology startup focused on innovative solutions</p>
+                    <div class="collaboration-details">
+                        <span class="project-count">5 Projects</span>
+                        <span class="duration">2 Years</span>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>InnovateCorp</h3>
+                    <p>Leading innovation company in the manufacturing sector</p>
+                    <div class="collaboration-details">
+                        <span class="project-count">3 Projects</span>
+                        <span class="duration">1.5 Years</span>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Fashion Forward</h3>
+                    <p>Trendsetting fashion brand for modern consumers</p>
+                    <div class="collaboration-details">
+                        <span class="project-count">4 Projects</span>
+                        <span class="duration">1 Year</span>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>HealthTech Solutions</h3>
+                    <p>Healthcare technology company improving patient care</p>
+                    <div class="collaboration-details">
+                        <span class="project-count">2 Projects</span>
+                        <span class="duration">8 Months</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Project Results -->
+    <section class="project-results">
+        <div class="container">
+            <h2 class="section-title">Project Results</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>300%</h3>
+                    <p>Increase in brand engagement</p>
+                    <span class="project-name">TechStart Campaign</span>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>500+</h3>
+                    <p>Event attendees</p>
+                    <span class="project-name">InnovateCorp Launch</span>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>2M+</h3>
+                    <p>Video views</p>
+                    <span class="project-name">Restaurant Ads</span>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>150%</h3>
+                    <p>Sales increase</p>
+                    <span class="project-name">Fashion Forward</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Create Something Amazing?</h2>
+                <p>Let's discuss your project and see how we can bring your vision to life.</p>
+                <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GSM</h3>
+                    <p>Growth Story Media</p>
+                    <p>Crafting compelling narratives that drive growth and engagement.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li>Content Writing</li>
+                        <li>Editing</li>
+                        <li>Event Organizing</li>
+                        <li>Influencer Promotion</li>
+                        <li>Ad Script Writing</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Growth Story Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
