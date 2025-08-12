@@ -1396,6 +1396,11 @@ html {
     color: #ffd700;
     margin-bottom: 0.5rem;
 }
+.result-card h2 {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+}
 
 .project-name {
     color: #888;
@@ -2101,4 +2106,5 @@ html {
 .page-transition.loaded {
     opacity: 1;
     transform: translateY(0);
+
 } 
